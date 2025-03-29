@@ -122,6 +122,8 @@ if [ -x "$(command -v exa)" ]; then
     alias ll="exa --long --all --group --icons"
 fi
 
+alias startssh="eval \$(ssh-agent) && ssh-add ~/.ssh/id_rsa"
+
 #if [ -x "$(command -v z)" ]; then
     #alias cd="z"
     #alias cdh="z ~"
