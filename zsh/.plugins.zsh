@@ -3,4 +3,4 @@
 ZSH_CUSTOM_PLUGINS=(
   "zsh-users/zsh-syntax-highlighting"
   "zsh-users/zsh-autosuggestions"
-}
+)
