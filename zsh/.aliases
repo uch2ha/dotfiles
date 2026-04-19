@@ -1,0 +1,7 @@
+# Aliases for ls (use exa if available)
+if [ -x "$(command -v exa)" ]; then
+  alias ls="exa"
+  alias ll="exa --long --all --group --icons"
+fi
+
+
