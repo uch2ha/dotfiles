@@ -16,7 +16,7 @@ ENABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Disable auto-setting terminal title
-DISABLE_AUTO_TITLE="true"
+# DISABLE_AUTO_TITLE="true"
 
 # Load Powerlevel10k theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
