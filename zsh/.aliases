@@ -1,7 +1,10 @@
 # Aliases for ls (use exa if available)
-if [ -x "$(command -v exa)" ]; then
+if [ -x "$(command -v eza)" ]; then
   alias ls="eza"
   alias ll="eza --long --all --group --icons"
+else
+  alias ls="ls --color=auto"
+  alias ll="ls -la"
 fi
 
 
