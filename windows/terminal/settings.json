@@ -1,0 +1,162 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "id": "User.copy.644BA8F2"
+        },
+        {
+            "command": "paste",
+            "id": "User.paste"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "id": "User.splitPane.A6751878"
+        },
+        {
+            "command": "find",
+            "id": "User.find"
+        }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{963ff2f7-6aed-5ce3-9d91-90d99571f53a}",
+    "disabledProfileSources": 
+    [
+        "Windows.Terminal.Azure"
+    ],
+    "keybindings": 
+    [
+        {
+            "id": "User.copy.644BA8F2",
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "User.paste",
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "User.splitPane.A6751878",
+            "keys": "alt+shift+d"
+        }
+    ],
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "colorScheme": "Dracula",
+            "cursorShape": "bar",
+            "font": 
+            {
+                "face": "JetBrainsMono Nerd Font",
+                "size": 14
+            },
+            "historySize": 12000,
+            "intenseTextStyle": "bright",
+            "opacity": 95,
+            "padding": "8",
+            "scrollbarState": "visible",
+            "useAcrylic": false
+        },
+        "list": 
+        [
+            {
+                "guid": "{963ff2f7-6aed-5ce3-9d91-90d99571f53a}",
+                "hidden": false,
+                "icon": "C:\\Users\\Ubuntu-System-Icon-Blue-32.png",
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "~/"
+            },
+            {
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "name": "PowerShell",
+                "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\"",
+                "elevate": true,
+                "guid": "{f3f6d0a5-7bbe-4ce0-b412-a575fee3edc2}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/pwsh.png",
+                "name": "PowerShell (Admin)",
+                "startingDirectory": "%USERPROFILE%"
+            }
+        ]
+    },
+    "schemes": 
+    [
+        {
+            "background": "#282A36",
+            "black": "#21222C",
+            "blue": "#BD93F9",
+            "brightBlack": "#6272A4",
+            "brightBlue": "#D6ACFF",
+            "brightCyan": "#A4FFFF",
+            "brightGreen": "#69FF94",
+            "brightPurple": "#FF92DF",
+            "brightRed": "#FF6E6E",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFFFA5",
+            "cursorColor": "#F8F8F2",
+            "cyan": "#8BE9FD",
+            "foreground": "#F8F8F2",
+            "green": "#50FA7B",
+            "name": "Dracula",
+            "purple": "#FF79C6",
+            "red": "#FF5555",
+            "selectionBackground": "#44475A",
+            "white": "#F8F8F2",
+            "yellow": "#F1FA8C"
+        },
+        {
+            "background": "#1A1A1A",
+            "black": "#121212",
+            "blue": "#2B4FFF",
+            "brightBlack": "#666666",
+            "brightBlue": "#5C78FF",
+            "brightCyan": "#5AC8FF",
+            "brightGreen": "#905AFF",
+            "brightPurple": "#5EA2FF",
+            "brightRed": "#BA5AFF",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#685AFF",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#28B9FF",
+            "foreground": "#F1F1F1",
+            "green": "#7129FF",
+            "name": "xcad",
+            "purple": "#2883FF",
+            "red": "#A52AFF",
+            "selectionBackground": "#FFFFFF",
+            "white": "#F1F1F1",
+            "yellow": "#3D2AFF"
+        }
+    ],
+    "showTabsInTitlebar": true,
+    "tabSwitcherMode": "inOrder",
+    "themes": [],
+    "useAcrylicInTabRow": true
+}
