@@ -163,29 +163,6 @@ clone_dotfiles_sparse() {
 }
 
 
-link_zsh_dotfiles() {
-  log "Linking Zsh dotfiles from $DOTFILES_DIR/zsh..."
-
-  local repo_zsh_dir="$DOTFILES_DIR/zsh"
-  local src_zshrc="$repo_zsh_dir/.zshrc"
-  local src_p10k="$repo_zsh_dir/.p10k.zsh"
-  local src_aliases="$repo_zsh_dir/.aliases"
-
-  [[ -d "$repo_zsh_dir" ]] || die "Missing directory: $repo_zsh_dir"
-  [[ -f "$src_zshrc" ]] || die "Missing file: $src_zshrc"
-  [[ -f "$src_p10k" ]] || die "Missing file: $src_p10k"
-  [[ -f "$src_aliases" ]] || die "Missing file: $src_aliases"
-
-  ln -sfn "$src_zshrc" "$HOME/.zshrc"
-  success "Linked $HOME/.zshrc -> $src_zshrc"
-
-  ln -sfn "$src_p10k" "$HOME/.p10k.zsh"
-  success "Linked $HOME/.p10k.zsh -> $src_p10k"
-
-  ln -sfn "$src_aliases" "$HOME/.aliases"
-  success "Linked $HOME/.aliases -> $src_aliases"
-}
-
 
 install_oh_my_zsh() {
   log "Installing Oh My Zsh..."
@@ -220,6 +197,30 @@ install_powerlevel10k() {
   [[ -d "$p10k_dir" ]] || die "Powerlevel10k installation failed"
 
   success "Powerlevel10k theme installed"
+}
+
+
+link_zsh_dotfiles() {
+  log "Linking Zsh dotfiles from $DOTFILES_DIR/zsh..."
+
+  local repo_zsh_dir="$DOTFILES_DIR/zsh"
+  local src_zshrc="$repo_zsh_dir/.zshrc"
+  local src_p10k="$repo_zsh_dir/.p10k.zsh"
+  local src_aliases="$repo_zsh_dir/.aliases"
+
+  [[ -d "$repo_zsh_dir" ]] || die "Missing directory: $repo_zsh_dir"
+  [[ -f "$src_zshrc" ]] || die "Missing file: $src_zshrc"
+  [[ -f "$src_p10k" ]] || die "Missing file: $src_p10k"
+  [[ -f "$src_aliases" ]] || die "Missing file: $src_aliases"
+
+  ln -sfn "$src_zshrc" "$HOME/.zshrc"
+  success "Linked $HOME/.zshrc -> $src_zshrc"
+
+  ln -sfn "$src_p10k" "$HOME/.p10k.zsh"
+  success "Linked $HOME/.p10k.zsh -> $src_p10k"
+
+  ln -sfn "$src_aliases" "$HOME/.aliases"
+  success "Linked $HOME/.aliases -> $src_aliases"
 }
 
 
@@ -377,9 +378,9 @@ main() {
   backup_existing_paths
   install_required_packages
   clone_dotfiles_sparse
-  link_zsh_dotfiles
   install_oh_my_zsh
   install_powerlevel10k
+  link_zsh_dotfiles # after install_oh_my_zsh && before install_zsh_external_plugins
   install_zsh_external_plugins
   install_apt_packages_from_file
   install_eza
