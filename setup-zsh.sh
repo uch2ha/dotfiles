@@ -163,30 +163,27 @@ clone_dotfiles_sparse() {
 }
 
 
-install_apt_packages_from_file() {
-  log "Installing additional APT packages from .packages.apt..."
+link_zsh_dotfiles() {
+  log "Linking Zsh dotfiles from $DOTFILES_DIR/zsh..."
 
-  local package_file="$DOTFILES_DIR/zsh/.packages.apt"
-  [[ -f "$package_file" ]] || die "Package list file not found: $package_file"
+  local repo_zsh_dir="$DOTFILES_DIR/zsh"
+  local src_zshrc="$repo_zsh_dir/.zshrc"
+  local src_p10k="$repo_zsh_dir/.p10k.zsh"
+  local src_aliases="$repo_zsh_dir/.aliases"
 
-  local packages=()
-  local line
+  [[ -d "$repo_zsh_dir" ]] || die "Missing directory: $repo_zsh_dir"
+  [[ -f "$src_zshrc" ]] || die "Missing file: $src_zshrc"
+  [[ -f "$src_p10k" ]] || die "Missing file: $src_p10k"
+  [[ -f "$src_aliases" ]] || die "Missing file: $src_aliases"
 
-  while IFS= read -r line || [[ -n "$line" ]]; do
-    [[ -z "$line" ]] && continue
-    [[ "$line" =~ ^[[:space:]]*# ]] && continue
-    packages+=("$line")
-  done < "$package_file"
+  ln -sfn "$src_zshrc" "$HOME/.zshrc"
+  success "Linked $HOME/.zshrc -> $src_zshrc"
 
-  if [[ ${#packages[@]} -eq 0 ]]; then
-    warn "No additional APT packages found in $package_file"
-    return
-  fi
+  ln -sfn "$src_p10k" "$HOME/.p10k.zsh"
+  success "Linked $HOME/.p10k.zsh -> $src_p10k"
 
-  log "Installing packages: ${packages[*]}"
-  sudo apt-get install -y "${packages[@]}"
-
-  success "Additional APT packages installed"
+  ln -sfn "$src_aliases" "$HOME/.aliases"
+  success "Linked $HOME/.aliases -> $src_aliases"
 }
 
 
@@ -223,57 +220,6 @@ install_powerlevel10k() {
   [[ -d "$p10k_dir" ]] || die "Powerlevel10k installation failed"
 
   success "Powerlevel10k theme installed"
-}
-
-
-install_eza() {
-  log "Installing eza..."
-
-  if command -v eza >/dev/null 2>&1; then
-    success "eza is already installed"
-    return
-  fi
-
-  sudo mkdir -p /etc/apt/keyrings
-
-  wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc \
-    | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/gierens.gpg
-
-  echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" \
-    | sudo tee /etc/apt/sources.list.d/gierens.list >/dev/null
-
-  sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-
-  sudo apt-get update
-  sudo apt-get install -y eza
-
-  command -v eza >/dev/null 2>&1 || die "eza installation failed"
-
-  success "eza installed"
-}
-
-
-link_zsh_dotfiles() {
-  log "Linking Zsh dotfiles from $DOTFILES_DIR/zsh..."
-
-  local repo_zsh_dir="$DOTFILES_DIR/zsh"
-  local src_zshrc="$repo_zsh_dir/.zshrc"
-  local src_p10k="$repo_zsh_dir/.p10k.zsh"
-  local src_aliases="$repo_zsh_dir/.aliases"
-
-  [[ -d "$repo_zsh_dir" ]] || die "Missing directory: $repo_zsh_dir"
-  [[ -f "$src_zshrc" ]] || die "Missing file: $src_zshrc"
-  [[ -f "$src_p10k" ]] || die "Missing file: $src_p10k"
-  [[ -f "$src_aliases" ]] || die "Missing file: $src_aliases"
-
-  ln -sfn "$src_zshrc" "$HOME/.zshrc"
-  success "Linked $HOME/.zshrc -> $src_zshrc"
-
-  ln -sfn "$src_p10k" "$HOME/.p10k.zsh"
-  success "Linked $HOME/.p10k.zsh -> $src_p10k"
-
-  ln -sfn "$src_aliases" "$HOME/.aliases"
-  success "Linked $HOME/.aliases -> $src_aliases"
 }
 
 
@@ -315,6 +261,60 @@ install_zsh_external_plugins() {
   done
 
   success "Zsh external plugins installation step completed"
+}
+
+
+install_apt_packages_from_file() {
+  log "Installing additional APT packages from .packages.apt..."
+
+  local package_file="$DOTFILES_DIR/zsh/.packages.apt"
+  [[ -f "$package_file" ]] || die "Package list file not found: $package_file"
+
+  local packages=()
+  local line
+
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    [[ -z "$line" ]] && continue
+    [[ "$line" =~ ^[[:space:]]*# ]] && continue
+    packages+=("$line")
+  done < "$package_file"
+
+  if [[ ${#packages[@]} -eq 0 ]]; then
+    warn "No additional APT packages found in $package_file"
+    return
+  fi
+
+  log "Installing packages: ${packages[*]}"
+  sudo apt-get install -y "${packages[@]}"
+
+  success "Additional APT packages installed"
+}
+
+
+install_eza() {
+  log "Installing eza..."
+
+  if command -v eza >/dev/null 2>&1; then
+    success "eza is already installed"
+    return
+  fi
+
+  sudo mkdir -p /etc/apt/keyrings
+
+  wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc \
+    | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/gierens.gpg
+
+  echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" \
+    | sudo tee /etc/apt/sources.list.d/gierens.list >/dev/null
+
+  sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+
+  sudo apt-get update
+  sudo apt-get install -y eza
+
+  command -v eza >/dev/null 2>&1 || die "eza installation failed"
+
+  success "eza installed"
 }
 
 
@@ -377,11 +377,12 @@ main() {
   backup_existing_paths
   install_required_packages
   clone_dotfiles_sparse
+  link_zsh_dotfiles
   install_oh_my_zsh
   install_powerlevel10k
-  install_eza
-  link_zsh_dotfiles
   install_zsh_external_plugins
+  install_apt_packages_from_file
+  install_eza
   set_default_shell_to_zsh
   print_final_summary
   print_missing_plugins
