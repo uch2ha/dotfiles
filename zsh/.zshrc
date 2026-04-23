@@ -32,8 +32,12 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Source custom aliases
+# Source default .dotfiles
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
+
+# Source custom .dotfiles
+[[ -f "$HOME/.envs.custom" ]] && source "$HOME/.envs.custom"
+[[ -f "$HOME/.aliases.custom" ]] && source "$HOME/.aliases.custom"
 
 # Load nvm (Node.js version manager)
 export NVM_DIR="$HOME/.nvm"
