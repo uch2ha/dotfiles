@@ -1,0 +1,17 @@
+# User custom configuration files (not tracked)
+.envs.custom
+.aliases.custom
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup files
+*~
+*.bak
+*.swp
+*.swo
