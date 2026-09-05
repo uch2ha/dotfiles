@@ -37,7 +37,6 @@ main() {
   fi
 
   info "Stowing $STOW_ABS -> $TARGET_DIR"
-  printf "\n"
 
   local stow_args=(--verbose 2 --no-folding)
   $DRY_RUN && stow_args+=(--no)
@@ -45,12 +44,10 @@ main() {
   cd "$REPO_ROOT"
 
   if ! stow "${stow_args[@]}" -d "$STOW_DIR" -t "$TARGET_DIR" . 2>&1; then
-    printf "\n"
     warn "stow encountered conflicts. Run backup.sh first or check what files are in the way."
     exit 1
   fi
 
-  printf "\n"
   if $DRY_RUN; then
     info "Dry run: no changes will be made"
   else

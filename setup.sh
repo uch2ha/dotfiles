@@ -8,9 +8,9 @@ REPO_URL="https://github.com/uch2ha/dotfiles.git"
 CLONE_DIR="dotfiles"
 
 STEPS=(
-  backup
-  install-packages
-  deploy-*
+  "backup"
+  "install-packages"
+  "deploy-*"
 )
 
 main() {
@@ -23,10 +23,11 @@ main() {
   cd "$CLONE_DIR"
 
   success "Dotfiles repo cloned"
+  printf "\n"
 
   local -a expanded
   expand_steps expanded
-  run_steps expanded
+  run_steps "${expanded[@]}"
   print_summary "${expanded[@]}"
 }
 
@@ -35,8 +36,8 @@ expand_steps() {
   shopt -s nullglob
   local step
   for step in "${STEPS[@]}"; do
-    if [[ "$step" == deploy-* ]]; then
-      local pattern="script/${step/\*}.sh"
+    if [[ "$step" == *\** ]]; then
+      local pattern="script/$step.sh"
       local f
       for f in $pattern; do
         out+=("$(basename "$f" .sh)")
@@ -52,12 +53,12 @@ run_steps() {
   local s
   for s in "${steps[@]}"; do
     local step_file="script/$s.sh"
-    if [[ ! -x "$step_file" ]]; then
-      warn "Step not found or not executable: $step_file — skipping"
+    if [[ ! -f "$step_file" ]]; then
+      warn "Step not found: $step_file — skipping"
       continue
     fi
     info "Running: $s"
-    if ! "$step_file"; then
+    if ! bash "$step_file"; then
       fail "Step failed: $s"
       exit 1
     fi
@@ -121,7 +122,6 @@ request_sudo_preclone() {
 }
 
 clone_repo() {
-  printf "\n"
   info "Cloning $REPO_URL to $CLONE_DIR ..."
   git clone "$REPO_URL" "$CLONE_DIR"
 }
@@ -130,14 +130,15 @@ clone_repo() {
 if [[ -t 1 ]]; then
   BLD=$'\033[1;34m'; YLW=$'\033[1;33m'
   RED=$'\033[1;31m'; GRN=$'\033[1;32m'; RST=$'\033[0m'
+  GRY=$'\033[0;90m';
 else
-  BLD=''; YLW=''; RED=''; GRN=''; RST=''
+  BLD=''; YLW=''; RED=''; GRN=''; RST=''; GRY='';
 fi
 
 SECTION="main"
-info()    { printf "${BLD}[INFO]${RST}${SECTION:+ ($SECTION)} %s\n" "$*"; }
-warn()    { printf "${YLW}[WARN]${RST}${SECTION:+ ($SECTION)} %s\n" "$*"; }
-fail()    { printf "${RED}[FAIL]${RST}${SECTION:+ ($SECTION)} %s\n" "$*"; }
-success() { printf "${GRN}[ OK ]${RST}${SECTION:+ ($SECTION)} %s\n" "$*"; }
+info()    { printf "${BLD}[INFO]${RST}${GRY}${SECTION:+ ($SECTION)}${RST} %s\n" "$*"; }
+warn()    { printf "${YLW}[WARN]${RST}${GRY}${SECTION:+ ($SECTION)}${RST} %s\n" "$*"; }
+fail()    { printf "${RED}[FAIL]${RST}${GRY}${SECTION:+ ($SECTION)}${RST} %s\n" "$*"; }
+success() { printf "${GRN}[ OK ]${RST}${GRY}${SECTION:+ ($SECTION)}${RST} %s\n" "$*"; }
 
 main "$@"

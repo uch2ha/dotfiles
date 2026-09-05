@@ -9,13 +9,12 @@ fi
 
 # ── Logs ───────────────────────────────────
 info()    { printf "${BLD}[INFO]${RST}${GRY}${SECTION:+ ($SECTION)}${RST} %s\n" "$*"; }
-warn()    { printf "${YLW}[WARN]${RST}${SECTION:+ ($SECTION)} %s\n" "$*"; }
-fail()    { printf "${RED}[FAIL]${RST}${SECTION:+ ($SECTION)} %s\n" "$*"; }
-success() { printf "${GRN}[ OK ]${RST}${SECTION:+ ($SECTION)} %s\n" "$*"; }
+warn()    { printf "${YLW}[WARN]${RST}${GRY}${SECTION:+ ($SECTION)}${RST} %s\n" "$*"; }
+fail()    { printf "${RED}[FAIL]${RST}${GRY}${SECTION:+ ($SECTION)}${RST} %s\n" "$*"; }
+success() { printf "${GRN}[ OK ]${RST}${GRY}${SECTION:+ ($SECTION)}${RST} %s\n" "$*"; }
 
 # ── Helpers ────────────────────────────────
 request_sudo() {
-  printf "\n"
   if ! command -v sudo &>/dev/null; then
     fail "sudo is required but not installed."
     exit 1

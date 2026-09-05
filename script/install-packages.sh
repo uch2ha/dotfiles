@@ -50,7 +50,6 @@ main() {
   while IFS= read -r section; do
     [[ -z "$section" ]] && continue
 
-    printf "\n"
     info "Processing section: [$section]"
 
     while IFS= read -r pkg_line; do
@@ -114,27 +113,23 @@ install_package() {
 }
 
 log_summary() {
-  printf "\n"
-
   if [[ ${#INSTALL_OK[@]} -gt 0 ]]; then
-    printf "\n${GRN}OK (%d):${RST}\n" "${#INSTALL_OK[@]}"
+    success "Installed ${#INSTALL_OK[@]} package(s)"
     for pkg in "${INSTALL_OK[@]}"; do
-      printf "${GRN}✓${RST} %s\n" "$pkg"
+      success "$pkg"
     done
   fi
 
-if [[ ${#INSTALL_FAIL[@]} -gt 0 ]]; then
-    printf "\n${RED}FAIL (%d):${RST}\n" "${#INSTALL_FAIL[@]}"
+  if [[ ${#INSTALL_FAIL[@]} -gt 0 ]]; then
+    fail "Failed ${#INSTALL_FAIL[@]} package(s)"
     for pkg in "${INSTALL_FAIL[@]}"; do
-      printf "${RED}✗${RST} %s\n" "$pkg"
+      fail "$pkg"
     done
   fi
 
   if [[ ${#INSTALL_OK[@]} -eq 0 && ${#INSTALL_FAIL[@]} -eq 0 ]]; then
-    printf "\n  No packages to install.\n"
+    info "No packages to install."
   fi
-
-  printf "\n"
 }
 
 resolve_sections() {

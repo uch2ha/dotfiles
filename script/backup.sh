@@ -115,27 +115,24 @@ _record_dir_count() {
 }
 
 log_summary() {
-  printf "\n"
-
   if [[ $TOTAL -eq 0 && $SYMLINKS_FOUND -eq 0 ]]; then
     success "Nothing to backup — all targets are already managed or don't exist"
     return
   fi
 
   if [[ $TOTAL -gt 0 ]]; then
-    success "${GRN}Backed up ${TOTAL} file(s) to ${BACKUP_DIR}/${TIMESTAMP}/${RST}"
+    success "Backed up ${TOTAL} file(s) to ${BACKUP_DIR}/${TIMESTAMP}/"
 
     mapfile -t sorted_keys < <(printf '%s\n' "${!DIR_COUNTS[@]}" | sort)
     local pad_width=15
     for key in "${sorted_keys[@]}"; do
       local count="${DIR_COUNTS[$key]}"
       local label="$(printf '%-*s' "$pad_width" "$key")"
-      printf '%s\n' "${BLD}- ${label}${RST} ${count} file(s)"
+      info "$label  ${count} file(s)"
     done
   fi
 
   if [[ $SYMLINKS_FOUND -gt 0 ]]; then
-    printf "\n"
     warn "Skipped ${SYMLINKS_FOUND} symlink(s) in source (not backed up)"
   fi
 }
