@@ -1,0 +1,82 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  // model and agent
+  "default_agent": "plan",
+  "model": "openrouter/deepseek/deepseek-v4-flash", // expensive, defaults to build and plan agents
+  "small_model": "openrouter/deepseek/deepseek-v4-flash", // cheap, defaults to title agent
+  "agent": {
+    "build": {
+      "color": "primary",
+      "permission": {
+        "edit": "allow",
+      },
+    },
+    "plan": {
+      "color": "warning",
+    },
+    "general": {
+      "model": "openrouter/deepseek/deepseek-v4-flash", // expensive / medium
+      "mode": "subagent",
+    },
+    "explore": {
+      "model": "openrouter/deepseek/deepseek-v4-flash", // cheap
+      "mode": "subagent",
+    },
+    "scout": {
+      "model": "openrouter/deepseek/deepseek-v4-flash", // cheap
+      "mode": "subagent",
+    },
+    "compaction": {
+      "model": "openrouter/deepseek/deepseek-v4-flash", // cheap
+      "mode": "subagent",
+    },
+    "summary": {
+      "model": "openrouter/deepseek/deepseek-v4-flash", // cheap
+      "mode": "subagent",
+    },
+  },
+  // plugin
+  "plugin": [
+    "@dietrichgebert/ponytail", // simplest-working-solution enforcer
+    "superpowers@git+https://github.com/obra/superpowers.git#v6.3.0", // skill system (brainstorming, plans, reviews)
+    "context-mode", // searchable memory across sessions, better context management
+    "@upstash/context7-opencode", // Context7 MCP for current library documentation and code examples
+  ],
+  // mcp
+  "mcp": {
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app", // GitHub Grep MCP, search code examples on public GitHub repos
+    },
+  },
+  // permission
+  "permission": {
+    // custom
+    "gh_grep_*": "allow",
+    // default
+    "edit": "deny",
+    "external_directory": { "*": "ask" },
+    "bash": {
+      "*": "ask",
+      "ls *": "allow",
+      "pwd": "allow",
+      "whoami": "allow",
+      "date *": "allow",
+      "which *": "allow",
+      "type *": "allow",
+      "command *": "allow",
+      "echo *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "cat *": "allow",
+      "sort *": "allow",
+      "wc *": "allow",
+      "uniq *": "allow",
+      "file *": "allow",
+      "basename *": "allow",
+      "dirname *": "allow",
+      "readlink *": "allow",
+      "realpath *": "allow",
+    },
+  },
+}

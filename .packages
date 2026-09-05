@@ -1,0 +1,9 @@
+[fedora]
+# essentials
+git htop jq
+fish stow
+
+# extras
+eza
+ripgrep
+bat
