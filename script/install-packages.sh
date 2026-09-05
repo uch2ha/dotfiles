@@ -17,6 +17,15 @@ PACKAGES_ABS="$REPO_ROOT/$PACKAGES_FILE"
 source "$SCRIPT_DIR/_lib.sh"
 SECTION="i-packages"
 
+# ── CLI flags ──────────────────────────────
+DRY_RUN=false
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --dry-run) DRY_RUN=true; shift ;;
+    *) echo "Unknown option: $1"; exit 1 ;;
+  esac
+done
+
 # ── Shared state ───────────────────────────
 declare -ga INSTALL_OK=()
 declare -ga INSTALL_FAIL=()
@@ -104,6 +113,11 @@ parse_section() {
 
 install_package() {
   local package="$1"
+
+  if $DRY_RUN; then
+    info "[DRY-RUN] Would install: $package"
+    return
+  fi
 
   if sudo "$MANAGER" install -y "$package"; then
     INSTALL_OK+=("$package")
