@@ -74,17 +74,6 @@ print_summary() {
     success "$s"
   done
 
-  local found_backup=false
-  local s
-  for s in "${steps[@]}"; do
-    [[ "$s" == "backup" ]] && found_backup=true && break
-  done
-  if $found_backup; then
-    local latest
-    latest="$(ls -dt _backup/*/ 2>/dev/null | head -1)"
-    [[ -n "$latest" ]] && info "Backup created: $latest"
-  fi
-
   printf "\n"
 }
 
