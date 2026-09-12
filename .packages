@@ -7,3 +7,5 @@ fish stow
 eza
 ripgrep
 bat
+fd-find
+zoxide
