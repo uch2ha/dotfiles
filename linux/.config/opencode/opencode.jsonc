@@ -2,36 +2,38 @@
   "$schema": "https://opencode.ai/config.json",
   // model and agent
   "default_agent": "plan",
-  "model": "openrouter/deepseek/deepseek-v4-flash", // expensive, defaults to build and plan agents
-  "small_model": "openrouter/deepseek/deepseek-v4-flash", // cheap, defaults to title agent
+  "model": "openrouter/deepseek/deepseek-v4.1-flash", // expensive, defaults to build and plan agents
+  "small_model": "openrouter/deepseek/deepseek-v4-flash-0731", // cheap, defaults to title agent
   "agent": {
+    "plan": {
+      "model": "openrouter/openai/gpt-5.6-luna", // expensive / medium
+      "color": "warning",
+    },
     "build": {
+      "model": "openrouter/deepseek/deepseek-v4.1-flash", // medium
       "color": "primary",
       "permission": {
         "edit": "allow",
       },
     },
-    "plan": {
-      "color": "warning",
-    },
     "general": {
-      "model": "openrouter/deepseek/deepseek-v4-flash", // expensive / medium
-      "mode": "subagent",
-    },
-    "explore": {
-      "model": "openrouter/deepseek/deepseek-v4-flash", // cheap
-      "mode": "subagent",
-    },
-    "scout": {
-      "model": "openrouter/deepseek/deepseek-v4-flash", // cheap
+      "model": "openrouter/deepseek/deepseek-v4.1-flash", // medium
       "mode": "subagent",
     },
     "compaction": {
-      "model": "openrouter/deepseek/deepseek-v4-flash", // cheap
+      "model": "openrouter/deepseek/deepseek-v4.1-flash", // medium / cheap
+      "mode": "subagent",
+    },
+    "explore": {
+      "model": "openrouter/deepseek/deepseek-v4-flash-0731", // cheap
+      "mode": "subagent",
+    },
+    "scout": {
+      "model": "openrouter/deepseek/deepseek-v4-flash-0731", // cheap
       "mode": "subagent",
     },
     "summary": {
-      "model": "openrouter/deepseek/deepseek-v4-flash", // cheap
+      "model": "openrouter/deepseek/deepseek-v4-flash-0731", // cheap
       "mode": "subagent",
     },
   },
