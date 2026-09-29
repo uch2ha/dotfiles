@@ -1,0 +1,99 @@
+{
+  // ------------------ machine-specific connections ------------------
+  "ssh_connections": [],
+  "wsl_connections": [],
+
+  // ------------------ terminal ------------------
+  "terminal": {
+    "font_family": "JetBrainsMono Nerd Font",
+    "flexible": false,
+    "working_directory": "current_project_directory",
+    "dock": "left",
+    "shell": {
+      "program": "C:\\Windows\\System32\\wsl.exe"
+    }
+  },
+
+  // ------------------ workflow ------------------
+  "base_keymap": "JetBrains",
+  "session": {
+    "trust_all_worktrees": false
+  },
+
+  // ------------------ formatter ------------------
+  "formatter": "language_server",
+  "format_on_save": "on",
+  "languages": {
+    "YAML": {
+      "prettier": {
+        "singleQuote": true
+      }
+    },
+    "Python": {
+      "code_actions_on_format": {
+        "source.organizeImports.ruff": true
+      },
+      "formatter": {
+        "language_server": {
+          "name": "ruff"
+        }
+      }
+    },
+    // ------ biome ------
+    "CSS": { "formatter": { "language_server": { "name": "biome" } } },
+    "HTML": { "formatter": { "language_server": { "name": "biome" } } },
+    "JSON": { "formatter": { "language_server": { "name": "biome" } } },
+    "JSONC": { "formatter": { "language_server": { "name": "biome" } } },
+    "JSX": { "formatter": { "language_server": { "name": "biome" } } },
+    "JavaScript": { "formatter": { "language_server": { "name": "biome" } } },
+    "TSX": { "formatter": { "language_server": { "name": "biome" } } },
+    "TypeScript": { "formatter": { "language_server": { "name": "biome" } } }
+    // "Vue.js": { "formatter": { "language_server": { "name": "biome" } } }
+    // "Astro": { "formatter": { "language_server": { "name": "biome" } } },
+    // "GraphQL": { "formatter": { "language_server": { "name": "biome" } } },
+    // "Svelte": { "formatter": { "language_server": { "name": "biome" } } },
+  },
+
+  // ------------------ language servers ------------------
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true
+      }
+    }
+  },
+
+  // ------------------ editor behavior ------------------
+  "diff_view_style": "split",
+  "tab_size": 2,
+  "cli_default_open_behavior": "existing_window",
+  "mouse_wheel_zoom": true,
+
+  // ------------------ appearance and typography ------------------
+  "ui_font_weight": 400.0,
+  "ui_font_size": 19.0,
+  "ui_font_family": ".ZedSans",
+  "agent_ui_font_size": 18.0,
+  "buffer_font_size": 17.0,
+  "buffer_font_family": ".ZedMono",
+  "buffer_line_height": "comfortable",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Catppuccin Macchiato",
+    "dark": "Catppuccin Macchiato"
+  },
+
+  // ------------------ theme ------------------
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Dark Pro"
+  },
+
+  // ------------------ privacy ------------------
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false
+  }
+}
