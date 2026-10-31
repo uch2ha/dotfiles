@@ -11,3 +11,4 @@
 - Always apply ponytail mode `/ponytail`
 - Prefer project-local AGENTS.md over global defaults when they conflict
 - When starting a new task, first check if a skill applies via the `/skill` tool
+- Never commit or push unless the user explicitly asks you to.
