@@ -5,3 +5,6 @@ zoxide init fish | source
 
 # uv
 fish_add_path "/home/uch2ha/.local/bin"
+
+# opencode
+fish_add_path /home/uch2ha/.opencode/bin
