@@ -12,3 +12,5 @@
 - Prefer project-local AGENTS.md over global defaults when they conflict
 - When starting a new task, first check if a skill applies via the `/skill` tool
 - Never commit or push unless the user explicitly asks you to.
+- Always reply and write only in English, unless the user explicitly asks for another language.
+- If any .md file is out of date compared to the code or environment, always tell the user at the end of the message in a section like `!!! OUT OF DATE {file-name} !!!`
