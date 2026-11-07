@@ -1,39 +1,19 @@
 {
-  "model": "sonnet",
-  "theme": "dark",
-  "extraKnownMarketplaces": {
-    "ponytail": {
-      "source": { "source": "github", "repo": "DietrichGebert/ponytail" }
-    }
-  },
-  "enabledPlugins": {
-    "context7@anthropic-plugin-directory": true,
-    "skill-creator@anthropic-plugin-directory": true,
-    "ponytail@ponytail": true
-  },
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "startup|resume|clear|compact",
-        "hooks": [{ "type": "command", "command": "~/.claude/hooks/load-agents-md.sh" }]
-      }
-    ]
-  },
   "permissions": {
-    "defaultMode": "plan",
-    "disableBypassPermissionsMode": "disable",
-    "disableAutoMode": "disable",
-    "allow": [
-      "mcp__gh_grep",
-      "Bash(git status *)",
-      "Bash(git diff *)",
-      "Bash(git log *)",
-      "Bash(git show *)",
-      "Bash(git branch)",
-      "Bash(ls *)",
-      "Bash(npm test *)",
-      "Bash(npm run *)",
-      "Bash(uv run *)"
+    "allow": ["mcp__grep", "mcp__plugin_context7_context7"],
+    "deny": [
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git push *--force*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Bash(git filter-branch *)",
+      "Bash(git filter-repo *)",
+      "Bash(mkfs *)",
+      "Bash(shred *)",
+      "Bash(shutdown *)",
+      "Bash(reboot *)",
+      "Bash(poweroff *)"
     ],
     "ask": [
       "Bash(git push *)",
@@ -61,20 +41,30 @@
       "Bash(terraform destroy *)",
       "Bash(kubectl apply *)",
       "Bash(kubectl delete *)",
-      "Bash(docker system prune *)",
-      "Read(**/.env)",
-      "Read(**/.env.*)"
+      "Bash(docker system prune *)"
     ],
-    "deny": [
-      "Bash(git push --force *)",
-      "Bash(git push -f *)",
-      "Bash(git filter-branch *)",
-      "Bash(git filter-repo *)",
-      "Bash(mkfs *)",
-      "Bash(shred *)",
-      "Bash(shutdown *)",
-      "Bash(reboot *)",
-      "Bash(poweroff *)"
-    ]
-  }
+    "defaultMode": "plan"
+  },
+  "model": "sonnet",
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0,
+    "refreshInterval": 10
+  },
+  "enabledPlugins": {
+    "context7@anthropic-plugin-directory": true,
+    "skill-creator@anthropic-plugin-directory": true,
+    "ponytail@ponytail": true,
+    "superpowers@anthropic-plugin-directory": true
+  },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "theme": "custom:nord"
 }
