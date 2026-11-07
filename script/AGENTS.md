@@ -26,6 +26,10 @@ Always use `info()`, `warn()`, `fail()`, `success()` from `_lib.sh` — never ra
 - Exit non-zero on failure — `setup.sh` halts on any non-zero exit
 - `request_sudo` from `_lib.sh`, at start of script if any `sudo` calls are needed
 
+## Linking (`deploy-symlinks.sh`)
+
+`linux/` mirrors `$HOME`. A dir with a `.fold` file becomes ONE dir symlink, any other dir is recreated and its files linked one by one. Exclusions inside a folded dir go in that dir's `.gitignore`. See README "Linking rules".
+
 ## Adding a step
 
 1. Create `script/<name>.sh` following conventions above

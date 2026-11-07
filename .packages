@@ -1,7 +1,7 @@
 [fedora]
 # essentials
 git htop jq
-fish stow
+fish
 
 # extras
 eza
