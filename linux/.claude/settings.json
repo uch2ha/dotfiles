@@ -1,0 +1,80 @@
+{
+  "model": "sonnet",
+  "theme": "dark",
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": { "source": "github", "repo": "DietrichGebert/ponytail" }
+    }
+  },
+  "enabledPlugins": {
+    "context7@anthropic-plugin-directory": true,
+    "skill-creator@anthropic-plugin-directory": true,
+    "ponytail@ponytail": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [{ "type": "command", "command": "~/.claude/hooks/load-agents-md.sh" }]
+      }
+    ]
+  },
+  "permissions": {
+    "defaultMode": "plan",
+    "disableBypassPermissionsMode": "disable",
+    "disableAutoMode": "disable",
+    "allow": [
+      "mcp__gh_grep",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git branch)",
+      "Bash(ls *)",
+      "Bash(npm test *)",
+      "Bash(npm run *)",
+      "Bash(uv run *)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean *)",
+      "Bash(git checkout -- *)",
+      "Bash(git checkout .)",
+      "Bash(git restore *)",
+      "Bash(git stash drop *)",
+      "Bash(git stash clear)",
+      "Bash(git branch -D *)",
+      "Bash(git rebase *)",
+      "Bash(git merge *)",
+      "Bash(git rm *)",
+      "Bash(rm *)",
+      "Bash(chmod *)",
+      "Bash(chown *)",
+      "Bash(truncate *)",
+      "Bash(dd *)",
+      "Bash(sudo *)",
+      "Bash(kill *)",
+      "Bash(pkill *)",
+      "Bash(killall *)",
+      "Bash(terraform apply *)",
+      "Bash(terraform destroy *)",
+      "Bash(kubectl apply *)",
+      "Bash(kubectl delete *)",
+      "Bash(docker system prune *)",
+      "Read(**/.env)",
+      "Read(**/.env.*)"
+    ],
+    "deny": [
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git filter-branch *)",
+      "Bash(git filter-repo *)",
+      "Bash(mkfs *)",
+      "Bash(shred *)",
+      "Bash(shutdown *)",
+      "Bash(reboot *)",
+      "Bash(poweroff *)"
+    ]
+  }
+}
