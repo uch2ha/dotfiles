@@ -1,6 +1,13 @@
 # script/
 
-Setup pipeline scripts called by `setup.sh`. Each script is a single step.
+```
+script/
+  _lib.sh                    shared helpers (logging, request_sudo), sourced by every script
+  link-agent-to-project.sh   manual tool, not run by setup.sh
+  setup/                     pipeline steps called by setup.sh, one script per step
+```
+
+`setup/` scripts are the steps; each is a single step.
 
 ## Boilerplate (every script)
 
@@ -28,11 +35,11 @@ Always use `info()`, `warn()`, `fail()`, `success()` from `_lib.sh` — never ra
 
 ## Linking (`deploy-symlinks.sh`)
 
-`linux/` mirrors `$HOME`. A dir with a `.fold` file becomes ONE dir symlink, any other dir is recreated and its files linked one by one. Exclusions inside a folded dir go in that dir's `.gitignore`. See README "Linking rules".
+`linux/` mirrors `$HOME`. A dir with a `.folder` file becomes ONE dir symlink, any other dir is recreated and its files linked one by one. Exclusions inside a folded dir go in that dir's `.gitignore`. See README "Linking rules".
 
 ## Adding a step
 
-1. Create `script/<name>.sh` following conventions above
+1. Create `script/setup/<name>.sh` following conventions above
 2. Add `"<name>"` or `"<prefix>-*"` to `STEPS` array in `setup.sh`
 3. If logic is reusable in 2+ scripts, move to `_lib.sh`
 
@@ -50,10 +57,10 @@ Always use `info()`, `warn()`, `fail()`, `success()` from `_lib.sh` — never ra
 - **Derived paths** — computed from `BASH_SOURCE[0]` inline in every script:
   ```bash
   SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+  REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"   # setup/ scripts; top-level script/ uses ".."
   ```
-  Must come **before** Inject, because `source "$SCRIPT_DIR/_lib.sh"` needs `$SCRIPT_DIR`.
-- **Inject** — `source "$SCRIPT_DIR/_lib.sh"` then `SECTION="<name>"`
+  Must come **before** Inject, because the `source` of `_lib.sh` needs `$SCRIPT_DIR`.
+- **Inject** — `source "$SCRIPT_DIR/../_lib.sh"` (`setup/`) or `source "$SCRIPT_DIR/_lib.sh"` (top level) then `SECTION="<name>"`
 - **CLI flags** — `while [[ $# -gt 0 ]]; do` block, parse to vars
 - **Shared state** — `declare -g` vars used across functions within the script
 

@@ -10,13 +10,13 @@ LOG_DIR_DEPTH=2
 
 # ── Derived paths ──────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 SOURCE_ABS="$REPO_ROOT/$SOURCE_DIR"
 TIMESTAMP="$(date -u +"%Y-%m-%dT%H-%M-%SZ")"
 BACKUP_ABS="$REPO_ROOT/$BACKUP_DIR/$TIMESTAMP"
 
 # ── Inject ─────────────────────────────────
-source "$SCRIPT_DIR/_lib.sh"
+source "$SCRIPT_DIR/../_lib.sh"
 SECTION="backup"
 
 # ── CLI flags ──────────────────────────────

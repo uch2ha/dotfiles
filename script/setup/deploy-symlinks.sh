@@ -10,11 +10,11 @@ FOLDER_MARKER=".folder"
 
 # ── Derived paths ──────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 SOURCE_ABS="$REPO_ROOT/$SOURCE_DIR"
 
 # ── Inject ─────────────────────────────────
-source "$SCRIPT_DIR/_lib.sh"
+source "$SCRIPT_DIR/../_lib.sh"
 SECTION="d-links"
 
 # ── CLI flags ──────────────────────────────
@@ -73,7 +73,7 @@ _link_one() {
   if [[ -d "$dst" && ! -L "$dst" ]]; then
     _adopt_dir "$src" "$dst"
   elif [[ -e "$dst" && ! -L "$dst" ]]; then
-    fail "Real file in the way: $dst (run script/backup.sh first)"
+    fail "Real file in the way: $dst (run script/setup/backup.sh first)"
     exit 1
   fi
 

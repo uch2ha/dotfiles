@@ -37,7 +37,7 @@ expand_steps() {
   local step
   for step in "${STEPS[@]}"; do
     if [[ "$step" == *\** ]]; then
-      local pattern="script/$step.sh"
+      local pattern="script/setup/$step.sh"
       local f
       for f in $pattern; do
         out+=("$(basename "$f" .sh)")
@@ -52,7 +52,7 @@ run_steps() {
   local -a steps=("$@")
   local s
   for s in "${steps[@]}"; do
-    local step_file="script/$s.sh"
+    local step_file="script/setup/$s.sh"
     if [[ ! -f "$step_file" ]]; then
       warn "Step not found: $step_file — skipping"
       continue

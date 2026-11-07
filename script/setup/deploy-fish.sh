@@ -7,7 +7,7 @@ trap 'echo; echo "ABORTED by user"; exit 130' INT
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # ── Inject ─────────────────────────────────
-source "$SCRIPT_DIR/_lib.sh"
+source "$SCRIPT_DIR/../_lib.sh"
 SECTION="d-fish"
 
 # ── CLI flags ──────────────────────────────

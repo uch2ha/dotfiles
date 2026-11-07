@@ -10,11 +10,11 @@ SUPPORTED_MANAGER="dnf"
 
 # ── Derived paths ──────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 PACKAGES_ABS="$REPO_ROOT/$PACKAGES_FILE"
 
 # ── Inject ─────────────────────────────────
-source "$SCRIPT_DIR/_lib.sh"
+source "$SCRIPT_DIR/../_lib.sh"
 SECTION="i-packages"
 
 # ── CLI flags ──────────────────────────────
