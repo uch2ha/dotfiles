@@ -1,7 +1,27 @@
 {
   // ------------------ machine-specific connections ------------------
-  "ssh_connections": [],
-  "wsl_connections": [],
+  "ssh_connections": [
+    {
+      "host": "homelab",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/uch2ha"]
+        }
+      ]
+    }
+  ],
+  "wsl_connections": [
+    {
+      "distro_name": "FedoraLinux-44",
+      "user": null,
+      "projects": [
+        {
+          "paths": ["/home/uch2ha"]
+        }
+      ]
+    }
+  ],
 
   // ------------------ terminal ------------------
   "terminal": {
@@ -10,7 +30,8 @@
     "working_directory": "current_project_directory",
     "dock": "left",
     "shell": {
-      "program": "C:\\Windows\\System32\\wsl.exe"
+      // "program": "C:\\Windows\\System32\\wsl.exe"
+      "program": "/mnt/c/WINDOWS/system32/wsl.exe"
     }
   },
 
