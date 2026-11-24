@@ -76,6 +76,9 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 - Unsure how to do something: search real-world code with the `grep` MCP tools (grep.app).
 - Library/framework/API docs: use context7 tools instead of relying on memory.
+- Read .docx/.pptx/.xlsx/.pdf with `markitdown <file>`.
+- Ask before installing anything (apt, pip, npm -g, `uv tool`, or running a new package via `uvx`/`npx`): the user installs tools.
+- When a command, tool or app is missing or fails, end the reply with `!!! {name} IS MISSING !!!` or `!!! {name} DOESN'T WORK !!!` plus one line of why.
 
 ## Verify Before Done
 

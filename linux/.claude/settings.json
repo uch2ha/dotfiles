@@ -54,10 +54,10 @@
   },
   "enabledPlugins": {
     "context7@anthropic-plugin-directory": true,
-    "skill-creator@anthropic-plugin-directory": true,
     "ponytail@ponytail": true,
-    "superpowers@anthropic-plugin-directory": true
+    "superpowers@anthropic-plugin-directory": false
   },
+  "syncClaudeAiSkills": false,
   "extraKnownMarketplaces": {
     "ponytail": {
       "source": {
