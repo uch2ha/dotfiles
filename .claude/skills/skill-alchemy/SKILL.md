@@ -54,18 +54,19 @@ For each item, against the trusted set and against the earlier items of this run
 - name clash: same `name` anywhere;
 - conflict: a rule that contradicts AGENTS.md or another skill, quoted from both sides;
 - misleading: stale facts, project-specific names or paths, vague triggers in the description;
+- broken references: every mention of another skill (`name`, `/name`, `plugin:name`, "use the X skill") that is neither in the trusted set nor in this batch, quoted with file:line. Report all of them; for each, name a good equivalent from the trusted set if one exists;
 - size: description and body chars vs the budgets. Under budget → keep the author's text unchanged. Over → propose concrete cuts;
 - destination: global or a project group, per the placement rule in `agent/AGENTS.md` → "Placement rule" (loaded in S1); a group is an existing one from `ls agent/skills`, or a proposed new one;
 - suggestions: `disable-model-invocation: true` for skills only ever run by name; description wording.
 
 ### S4. Report
 
-One report after all items: a table `item | scan score | destination | size vs budget | risks | duplicates/conflicts | suggestions`, then per item the details (quotes, proposed cuts).
+One report after all items: a table `item | scan score | destination | size vs budget | risks | duplicates/conflicts | broken refs | suggestions`, then per item the details (quotes, proposed cuts).
 
 ### S5. Decisions
 
-- Zero risks, zero conflicts, clean scan, existing destinations → one question: approve all as proposed?
-- Otherwise ask per item, with AskUserQuestion, for: destination; each conflict (keep new / keep existing / keep both / merge); each suggestion; a new project group (proposed name; declined → ask where).
+- Zero risks, zero conflicts, zero broken references, clean scan, existing destinations → one question: approve all as proposed?
+- Otherwise ask per item, with AskUserQuestion, for: destination; each conflict (keep new / keep existing / keep both / merge); each broken reference (swap to the named equivalent / also take the referenced skill / rewrite the line / remove it), the user solves every case; each suggestion; a new project group (proposed name; declined → ask where).
 - Merge chosen → ask "draft a merge?" → read the needed full text → show the draft → ask "write it?" → repeat until accepted or cancelled.
 
 ### S6. Apply

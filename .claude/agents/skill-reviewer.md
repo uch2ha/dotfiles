@@ -24,6 +24,8 @@ Return exactly this template:
   - Scan finding <rule id> at <file:line>: <confirmed / false positive, why>
 - Rules it gives the agent:
   - "<short quote>" (<file>)
+- References to other skills (`name`, `/name`, `plugin:name`, "use the X skill"):
+  - "<short quote>" (<file:line>)   (or: none)
 - Guessed destination: global | group:<stack> — <why>
 - Upstream changes (only if `.upstream.diff` exists): each added / removed / changed rule, quoted, with any new risk
 ```
