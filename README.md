@@ -42,8 +42,8 @@ If a real dir already exists where a folded link goes, its extra content is copi
 
 ## Project skills (linking agent/skills)
 
-Stack-specific skills (e.g. `java-quarkus`, `react-vite`) live in groups under `agent/skills/` and are linked into a project by hand with `script/link-agent-to-project.sh`. Global skills (every project) live flat in the harness configs under `linux/` (today `linux/.claude/skills/`).
-Command and details: [agent/README.md](agent/README.md#linking-a-group-into-a-project).
+Stack-specific skills (e.g. `java-quarkus`, `react-vite`) live in groups under `agent/skills/` and are linked into a project by hand with `script/link-agent-to-project.sh`. Global skills (every project) live flat in the harness configs under `linux/` (default: Claude Code's `linux/.claude/skills/`).
+Command and details: [agent/README.md](agent/README.md#using-project-skills).
 
 ## Adding and checking skills (skill-alchemy)
 

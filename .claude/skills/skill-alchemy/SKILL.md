@@ -12,7 +12,7 @@ The user is the source of truth. You analyze, report and propose; every write, m
 - Image rebuild offer: when image `skill-alchemy` is older than 30 days.
 - Paths (relative to the dotfiles root):
   - inbox: `agent/skills-alchemy/data/`
-  - global skills dir: `linux/.claude/skills/`. This is the canonical copy; other harness configs under `linux/` mirror it later. Flat only (`<name>/SKILL.md`): grouping folders do not load. Missing → ask the user where to file; fallback `agent/skills-alchemy/result/<name>/` (tracked in git, no harness loads it).
+  - global skills dir: `linux/.claude/skills/` by default (this command is built for Claude Code). When the user names another harness config under `linux/` (e.g. opencode), file there instead. Flat only (`<name>/SKILL.md`): grouping folders do not load. Missing → ask the user where to file; fallback `agent/skills-alchemy/result/<name>/` (tracked in git, no harness loads it).
   - project groups: `agent/skills/<group>/<name>/`
   - rules: `linux/.claude/AGENTS.md`
 
@@ -36,7 +36,7 @@ Read, once per run, and keep in context:
 - every `SKILL.md` in the global skills dir (`*/SKILL.md`), in `agent/skills/*/*/` and in `agent/skills-alchemy/result/*/`;
 - skills of plugins set `true` in `linux/.claude/settings.json` `enabledPlugins`: their `installPath` comes from `~/.claude/plugins/installed_plugins.json`, then read `<installPath>/skills/*/SKILL.md`;
 - `linux/.claude/AGENTS.md`;
-- the placement rule: `agent/README.md`, section "Global vs project skills".
+- the placement rule: `agent/AGENTS.md`, section "Placement rule".
 
 ### S2. Security scan (container)
 
@@ -55,7 +55,7 @@ For each item, against the trusted set and against the earlier items of this run
 - conflict: a rule that contradicts AGENTS.md or another skill, quoted from both sides;
 - misleading: stale facts, project-specific names or paths, vague triggers in the description;
 - size: description and body chars vs the budgets. Under budget → keep the author's text unchanged. Over → propose concrete cuts;
-- destination: global or a project group, per the placement rule in `agent/README.md` → "Global vs project skills" (loaded in S1); a group is an existing one from `ls agent/skills`, or a proposed new one;
+- destination: global or a project group, per the placement rule in `agent/AGENTS.md` → "Placement rule" (loaded in S1); a group is an existing one from `ls agent/skills`, or a proposed new one;
 - suggestions: `disable-model-invocation: true` for skills only ever run by name; description wording.
 
 ### S4. Report
