@@ -1,0 +1,14 @@
+# SkillSpector (static skill security scanner) for /skill-alchemy. Nothing gets installed on the host.
+#   build:  podman build -t skill-alchemy ~/dotfiles/agent/skills-alchemy
+#   run:    podman run --rm -v <dir>:/scan:ro skill-alchemy scan /scan --recursive --no-llm -f json
+#   remove: podman rmi skill-alchemy
+FROM docker.io/library/python:3.13-slim
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends git \
+ && rm -rf /var/lib/apt/lists/*
+
+# Latest main at build time; skill-alchemy offers a rebuild when the image is older than 30 days.
+RUN pip install --no-cache-dir git+https://github.com/NVIDIA/skillspector.git
+
+ENTRYPOINT ["skillspector"]

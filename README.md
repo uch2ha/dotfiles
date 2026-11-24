@@ -2,6 +2,14 @@
 
 Fedora dotfiles managed with plain symlinks (`script/setup/deploy-symlinks.sh`).
 
+## Contents
+
+- [Quick start](#quick-start)
+- [Setup steps](#setup-steps)
+- [How files are linked](#how-files-are-linked)
+- [Project skills (linking agent/skills)](#project-skills-linking-agentskills)
+- [Adding and checking skills (skill-alchemy)](#adding-and-checking-skills-skill-alchemy)
+
 ## Quick start
 
 ```sh
@@ -10,7 +18,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/uch2ha/dotfiles/main/setup.s
 
 This clones the repo, backup existing dotfiles, installs packages, deploys symlinks, and sets up the fish shell.
 
-## What's inside
+## Setup steps
 
 | Step               | What it does                                      |
 | ------------------ | ------------------------------------------------- |
@@ -19,7 +27,7 @@ This clones the repo, backup existing dotfiles, installs packages, deploys symli
 | `deploy-symlinks`  | Symlinks `linux/` into `$HOME` (see below)        |
 | `deploy-fish`      | Sets fish as the default shell                    |
 
-## Linking rules
+## How files are linked
 
 `linux/` mirrors `$HOME`. What you put in the repo decides how it is linked:
 
@@ -32,14 +40,12 @@ This clones the repo, backup existing dotfiles, installs packages, deploys symli
 New file in a folded dir appears instantly; otherwise move it into `linux/` and re-run `script/setup/deploy-symlinks.sh`.
 If a real dir already exists where a folded link goes, its extra content is copied into the repo dir first (nothing is lost).
 
-## Using agent files in a project
+## Project skills (linking agent/skills)
 
-Manual only (not run by `setup.sh`). Links every skill folder of the listed groups into a project:
+Stack-specific skills (e.g. `java-quarkus`, `react-vite`) live in groups under `agent/skills/` and are linked into a project by hand with `script/link-agent-to-project.sh`. Global skills (every project) live flat in the harness configs under `linux/` (today `linux/.claude/skills/`).
+Command and details: [agent/README.md](agent/README.md#linking-a-group-into-a-project).
 
-```sh
-bash ~/dotfiles/script/link-agent-to-project.sh [--dry-run] --from skills \
-  --folders java-quarkus react-vite docker postgres \
-  --to ~/projects/myapp/.claude/skills
-```
+## Adding and checking skills (skill-alchemy)
 
-All `--folders` are checked first; every missing one is listed and nothing is linked. Added a skill to a group? Re-run the same command (existing links are skipped, dead ones pruned). Gitignore the project's `.claude/skills/`: the links are absolute.
+From `~/dotfiles`, run `/skill-alchemy` in Claude Code: `add <github url>…`, `inbox`, `audit [name|all]`, `upstream [name|all]`. Every skill gets a security scan (in podman, nothing installed on the host) and a comparison with all existing skills, and nothing is filed without your OK.
+Details: [agent/README.md](agent/README.md#adding-and-checking-skills-skill-alchemy).

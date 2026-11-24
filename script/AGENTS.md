@@ -35,7 +35,7 @@ Always use `info()`, `warn()`, `fail()`, `success()` from `_lib.sh` — never ra
 
 ## Linking (`deploy-symlinks.sh`)
 
-`linux/` mirrors `$HOME`. A dir with a `.folder` file becomes ONE dir symlink, any other dir is recreated and its files linked one by one. Exclusions inside a folded dir go in that dir's `.gitignore`. See README "Linking rules".
+`linux/` mirrors `$HOME`. A dir with a `.folder` file becomes ONE dir symlink, any other dir is recreated and its files linked one by one. Exclusions inside a folded dir go in that dir's `.gitignore`. See README "How files are linked".
 
 ## Adding a step
 

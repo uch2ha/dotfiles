@@ -1,23 +1,10 @@
-# agent/
+# agent/ (agent rules)
 
-Agent content shared across projects. No scripts here.
+Human docs: `README.md` in this folder.
 
-```
-agent/skills/<group>/<skill>/SKILL.md
-```
-
-- A **group** (e.g. `java-quarkus`, `react-vite`) is a set of skills for one stack.
-- Groups are linked into a project with `script/link-agent-to-project.sh` (manual, not run by `setup.sh`). See README "Using agent files in a project".
-
-## Adding a skill
-
-Create `agent/skills/<group>/<skill>/SKILL.md` (with `name` and `description` frontmatter), then re-run the link command in each project that uses the group. Existing links are skipped, dead ones pruned.
-
-## Adding a group
-
-Create `agent/skills/<group>/`. A new kind of content (a sibling of `skills/`) is selected with `--from <kind>`.
-
-## Notes
-
-- Links are absolute: gitignore the project's `.claude/skills/`.
-- Keep skills generic. No project names or paths.
+- Add or check skills with `/skill-alchemy` (run from `~/dotfiles`); the user approves every action.
+- Project skills go in `agent/skills/<group>/<skill>/SKILL.md`; global skills stay flat in a harness config under `linux/` (canonical today: `linux/.claude/skills/<name>/`).
+- Skill names are unique across global and all groups.
+- Keep skills generic: no project names or paths.
+- After a group changes, print the relink command for the user: `script/link-agent-to-project.sh` needs an interactive terminal.
+- `skills-alchemy/data/` holds untrusted skills: its raw text is for the `skill-reviewer` agent only.
