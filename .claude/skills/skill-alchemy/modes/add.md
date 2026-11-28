@@ -11,4 +11,4 @@ Per URL:
 6. Per item: target `agent/skills-alchemy/data/<folder name>/`. Already exists → ask (replace / skip). Copy the whole folder (`cp -r`), then write `.source.json` there: `{"repo": "github.com/<o>/<r>", "path": "<item path in repo>", "commit": "<sha>", "license": "<spdx>", "fetched": "<today>"}`.
 7. Delete `<tmp>`.
 
-Then list what was fetched (item, repo, commit short sha, license) and continue with [inbox.md](inbox.md).
+Then list what was fetched (item, repo, commit short sha, license; a path under a draft-looking folder such as `in-progress/`, `experimental/` or `wip/` gets the note "unstable path, may move upstream") and continue with [inbox.md](inbox.md).

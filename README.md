@@ -47,5 +47,5 @@ Command and details: [agent/README.md](agent/README.md#using-project-skills).
 
 ## Adding and checking skills (skill-alchemy)
 
-From `~/dotfiles`, run `/skill-alchemy` in Claude Code: `add <github url>…`, `inbox`, `audit [name|all]`, `upstream [name|all]`. Every skill gets a security scan (in podman, nothing installed on the host) and a comparison with all existing skills, and nothing is filed without your OK.
+From `~/dotfiles`, run `/skill-alchemy` in Claude Code: `find <need>`, `add <github url>…`, `inbox`, `audit [name|all]`, `upstream [name|all]`. Every skill gets a security scan (in podman, nothing installed on the host) and a comparison with all existing skills, and nothing is filed without your OK.
 Details: [agent/README.md](agent/README.md#adding-and-checking-skills-skill-alchemy).
