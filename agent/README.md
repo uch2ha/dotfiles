@@ -26,6 +26,7 @@ Inside `~/dotfiles`, the Claude Code command `/skill-alchemy` handles adding and
 
 Commands:
 
+- `find <need>` searches your skills, `skills-alchemy/candidates.md` and GitHub before you add or write one;
 - `add <github url>…` fetches skills from GitHub;
 - `inbox` checks skills dropped into `skills-alchemy/data/`;
 - `audit` re-checks the current skills;
