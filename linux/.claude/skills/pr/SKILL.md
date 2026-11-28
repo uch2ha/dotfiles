@@ -1,12 +1,13 @@
 ---
 name: pr
-description: "Use when writing a PR body."
+description: "PR body template: Summary as a diagram, diff sketch or tree, before/after Evidence, Merge Danger (door, blast radius). Use when writing or editing a pull request description."
 metadata:
-  credits:
-    skill: show-me
-    author: Dex Horthy
-    organisation: Humanlayer
-    url: "https://github.com/humanlayer/skills/blob/main/plugins/show-me/skills/show-me/SKILL.md"
+  source:
+    repo: "github.com/mattpocock/skills"
+    path: "skills/engineering/pr"
+    commit: "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
+    license: "MIT"
+    checked: "2026-11-24"
 ---
 
 Use this template for writing the PR body:

@@ -14,17 +14,24 @@ Create the `docs/adr/` directory lazily: only when the first ADR is needed.
 
 That's it. An ADR can be a single paragraph. The value is in recording *that* a decision was made and *why*, not in filling out sections.
 
+Write in the present tense: "We use X", not "We will use X".
+
 ## Optional sections
 
 Only include these when they add genuine value. Most ADRs won't need them.
 
-- **Status** frontmatter (`proposed | accepted | deprecated | superseded by ADR-NNNN`): useful when decisions are revisited
+- **Status** frontmatter (`proposed | accepted | deprecated | superseded by ADR-NNNN`): useful when decisions are revisited. When a new ADR supersedes an old one, set the old one's status to `superseded by ADR-NNNN` and link the new ADR.
+- **Date** frontmatter: useful once there are many ADRs. When backfilling a past decision, use the original date and note that it was backfilled.
 - **Considered Options**: only when the rejected alternatives are worth remembering
 - **Consequences**: only when non-obvious downstream effects need to be called out
 
 ## Numbering
 
 Scan `docs/adr/` for the highest existing number and increment by one.
+
+## Answering "why did we choose X?"
+
+Look in `docs/adr/` for the ADR that covers the decision and answer from it, citing the file. If none covers it, say so, and offer to record one only if it passes the three tests below.
 
 ## When to offer an ADR
 

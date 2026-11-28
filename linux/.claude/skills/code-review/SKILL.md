@@ -1,6 +1,13 @@
 ---
 name: code-review
-description: "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\"."
+description: "Two-axis review of the changes since a fixed point (commit, branch, tag): repo coding standards plus a smell baseline, and the originating spec, in parallel subagents. Use when the user wants a branch, PR or work in progress reviewed against standards and spec, or says \"review since X\"."
+metadata:
+  source:
+    repo: "github.com/mattpocock/skills"
+    path: "skills/engineering/code-review"
+    commit: "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
+    license: "MIT"
+    checked: "2026-11-24"
 ---
 
 Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
@@ -10,6 +17,7 @@ Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings. Start every sub-agent with a fresh context window.
 
+The issue tracker should have been provided to you. If not, tell the user to run `/setup-agent-docs`.
 
 ## Process
 
@@ -25,7 +33,7 @@ Before going further, confirm the fixed point resolves (`git rev-parse <fixed-po
 
 Look for the originating spec, in this order:
 
-1. Spec references in the commit messages or branch name.
+1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.), fetched via the workflow in the tracker doc.
 2. A path the user passed as an argument.
 3. A spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
 4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".

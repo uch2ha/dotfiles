@@ -1,6 +1,16 @@
 ---
 name: diagnosing-bugs
 description: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
+metadata:
+  source:
+    repo: "github.com/mattpocock/skills"
+    path: "skills/engineering/diagnosing-bugs"
+    commit: "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
+    license: "MIT"
+    checked: "2026-11-24"
+  skill-alchemy:
+    accept:
+      body-size: 8470
 ---
 
 # Diagnosing Bugs

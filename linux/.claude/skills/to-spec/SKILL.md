@@ -1,11 +1,19 @@
 ---
 name: to-spec
-description: "Turn the current conversation into a spec file in docs/specs/: no interview, just synthesis of what you have already discussed."
+description: "Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed."
 disable-model-invocation: true
+metadata:
+  source:
+    repo: "github.com/mattpocock/skills"
+    path: "skills/engineering/to-spec"
+    commit: "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
+    license: "MIT"
+    checked: "2026-11-24"
 ---
 
 This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know.
 
+The issue tracker should have been provided to you. If not, tell the user to run `/setup-agent-docs`.
 
 ## Process
 
@@ -15,7 +23,7 @@ This skill takes the current conversation context and codebase understanding and
 
 Check with the user that these seams match their expectations.
 
-3. Write the spec using the template below, then save it to `docs/specs/<slug>.md`. If the repo has a requirements doc, it stays the source of truth: the spec must not contradict it; flag any conflict to the user.
+3. Write the spec using the template below, then publish it to the project issue tracker.
 
 <spec-template>
 

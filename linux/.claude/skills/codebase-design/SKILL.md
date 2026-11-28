@@ -1,6 +1,13 @@
 ---
 name: codebase-design
 description: Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary.
+metadata:
+  source:
+    repo: "github.com/mattpocock/skills"
+    path: "skills/engineering/codebase-design"
+    commit: "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
+    license: "MIT"
+    checked: "2026-11-24"
 ---
 
 # Codebase Design

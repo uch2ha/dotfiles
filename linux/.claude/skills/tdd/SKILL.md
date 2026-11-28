@@ -1,6 +1,13 @@
 ---
 name: tdd
 description: Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions "red-green-refactor", or wants integration tests.
+metadata:
+  source:
+    repo: "github.com/mattpocock/skills"
+    path: "skills/engineering/tdd"
+    commit: "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
+    license: "MIT"
+    checked: "2026-11-24"
 ---
 
 # Test-Driven Development

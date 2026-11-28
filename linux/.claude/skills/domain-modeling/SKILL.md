@@ -1,6 +1,13 @@
 ---
 name: domain-modeling
 description: Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md, or recording or editing an ADR.
+metadata:
+  source:
+    repo: "github.com/mattpocock/skills"
+    path: "skills/engineering/domain-modeling"
+    commit: "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
+    license: "MIT"
+    checked: "2026-11-24"
 ---
 
 # Domain Modeling
