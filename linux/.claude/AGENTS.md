@@ -72,6 +72,15 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 - For non-trivial or ambiguous changes, do not start editing until you have the needed info from the user (the user may invoke `/grill-me`; if clearly warranted, suggest it).
 - If any .md file is out of date compared to the code or environment, tell the user at the end of the message in a section like `!!! OUT OF DATE {file-name} !!!`.
 
+## Reply format
+
+- Start with the answer or the next action, not with context or a plan.
+- Multi-step work: a numbered list; across turns, restate where we are ("step 3 of 5").
+- Keep side issues out of the answer: one short line or question after it. Never drop warnings, risks or the `!!!` lines.
+- Lists: about 5 items per group; group the rest or say "N more", never silently drop relevant items.
+- Estimates in concrete units (minutes, files, lines), not "a bit".
+- End with the one next action for the user (if any), then the required closing lines (ponytail's skipped/risk line, `!!!` blocks).
+
 ## Tools
 
 - Unsure how to do something: search real-world code with the `grep` MCP tools (grep.app).
@@ -79,6 +88,12 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 - Read .docx/.pptx/.xlsx/.pdf with `markitdown <file>`.
 - Ask before installing anything (apt, pip, npm -g, `uv tool`, or running a new package via `uvx`/`npx`): the user installs tools.
 - When a command, tool or app is missing or fails, end the reply with `!!! {name} IS MISSING !!!` or `!!! {name} DOESN'T WORK !!!` plus one line of why.
+
+## Subagents
+
+- You may dispatch subagents without being asked when a task has 2+ independent parts (modules, libraries, logs, separate fixes): follow the `dispatching-parallel-agents` skill. Quick single lookups stay inline.
+- Read-only work goes to Explore agents; agents that write files each get their own files or worktree.
+- Treat a subagent's report as a claim: check its diff/output before reporting success.
 
 ## Verify Before Done
 
